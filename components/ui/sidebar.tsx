@@ -698,56 +698,7 @@ function SidebarMenuSubButton({
   )
 }
 
-const AppSidebar = () => {
-  const items = [
-    {
-      label: "Dashboard",
-      icon: "🏠",
-      route: "#"
-    },
-    {
-      label: "Profile",
-      icon: "👤",
-      route: "#"
-    },
-    {
-      label: "Settings",
-      icon: "⚙️",
-      route: "#"
-    }
-  ]
-  return (
-    <Sidebar>
-      <SidebarHeader />
-      <SidebarContent>
-        <SidebarGroup />
-          <SidebarGroupLabel>SOMETHING</SidebarGroupLabel>
-          <SidebarMenu>
-            {
-              items.map((item)=> {
-                return (
-                  <SidebarMenuItem key={item.label}>
-                    <SidebarMenuButton
-                      asChild
-                      isActive={false}
-                      tooltip={item.label}
-                    >
-                      <a href={item.route}>
-                        <span>{item.icon}</span>
-                        <span className="text-lg">{item.label}</span>
-                      </a>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                )
-              })
-            }
-          </SidebarMenu>
-        <SidebarGroup />
-      </SidebarContent>
-      <SidebarFooter />
-    </Sidebar>
-  )
-}
+
 
 export {
   Sidebar,
@@ -774,5 +725,4 @@ export {
   SidebarSeparator,
   SidebarTrigger,
   useSidebar,
-  AppSidebar,
 }
