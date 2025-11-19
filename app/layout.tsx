@@ -32,7 +32,7 @@ export default function RootLayout({
         <Header />
         <div className="flex h-screen pt-20 gap-4">
           <AppSidebar />
-          <main className="flex-1 overflow-auto p-6 bg-neutral-1000">
+          <main className="flex-1 p-6 bg-neutral-1000">
             {children}
           </main>
         </div>
