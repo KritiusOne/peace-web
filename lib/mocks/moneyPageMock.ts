@@ -1,4 +1,4 @@
-import { TransactionType } from "@/types/UtilityTypes";
+import { TransactionType, CardType } from "@/types/UtilityTypes";
 import { IRecurringTransaction } from "@/types/RecurringTransaction";
 import { Privacy } from "@/types/UtilityTypes";
 import { ISave } from "@/types/Save";
@@ -7,7 +7,7 @@ import { CategoryType } from "@/types/Category";
 
 interface CashFlowItem {
   id: string;
-  type: TransactionType | "BALANCE";
+  type: CardType;
   amount: number;
   title: string;
 }
@@ -15,25 +15,25 @@ interface CashFlowItem {
 export const cashFlowMock: CashFlowItem[] = [
   {
     id: "cf-001",
-    type: "BALANCE",
+    type: CardType.NEUTRAL,
     amount: 12500,
     title: "Balance"
   },
   {
     id: "cf-002",
-    type: TransactionType.INCOME,
+    type: CardType.INCOME,
     amount: 56000, // Total de ingresos
     title: "Ingresos mensuales"
   },
   {
     id: "cf-003",
-    type: TransactionType.EXPENSE,
+    type: CardType.EXPENSE,
     amount: 29490, // Total de gastos (fijos + pagos de deuda)
     title: "Gastos mensuales"
   },
   {
     id: "cf-004",
-    type: TransactionType.INCOME,
+    type: CardType.INFO,
     amount: 47.34, // Tasa de ahorro actualizada
     title: "Tasa de ahorro"
   }
@@ -239,7 +239,7 @@ const debtPaymentsAsExpenses: IRecurringTransaction[] = debtsMock.map((debt) => 
 export const fixedExpensesMock: IRecurringTransaction[] = [
   ...regularFixedExpenses,
   ...debtPaymentsAsExpenses,
-];
+].sort((a, b) => b.amount - a.amount); 
 
 export const savingMock: SavingMock = {
   emergencyFund: {

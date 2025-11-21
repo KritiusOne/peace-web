@@ -1,7 +1,7 @@
 import * as React from "react"
 
 import { cn } from "@/lib/utils"
-import { ArrowBottomRightIcon, ArrowTopRightIcon } from "@radix-ui/react-icons"
+import { ArrowBottomRightIcon, ArrowTopRightIcon, DrawingPinFilledIcon, InfoCircledIcon } from "@radix-ui/react-icons"
 
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (
@@ -82,11 +82,13 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
+import { CardType } from "@/types/UtilityTypes"
+
 interface MoneyCardProps extends React.ComponentProps<typeof Card> {
   headText: string;
   mainText: string;
   footerText?: string;
-  type: "positive" | "negative" | "neutral" | "info";
+  type: CardType;
 }
 const MoneyCard: React.FC<MoneyCardProps> = ({
   headText,
@@ -95,33 +97,53 @@ const MoneyCard: React.FC<MoneyCardProps> = ({
   type,
   ...props
 }) => {
+  const getBackgroundColor = () => {
+    switch(type) {
+      case CardType.INCOME:
+        return "bg-primary-500";
+      case CardType.EXPENSE:
+        return "bg-red-200";
+      case CardType.INFO:
+        return "bg-secondary-400";
+      case CardType.NEUTRAL:
+      default:
+        return "bg-neutral-700";
+    }
+  };
+
   return (
-    <Card className={`border-none flex flex-row justify-around items-center px-4 ${type == "positive" ? "bg-primary-500" : type === "negative" ? "bg-red-500" : "bg-neutral-500"} w-md ${props.className}`} {...props}>
-      <CardContent className={`flex flex-col gap-2 justify-start items-start p-0`}>
-          <span className="text-left text-lg font-medium text-neutral-400">
+    <Card className={`border-none flex flex-row justify-around items-center px-4 ${getBackgroundColor()} w-md ${props.className}`} {...props}>
+      <CardContent className={`w-32 flex flex-col gap-2 justify-start items-start p-0`}>
+          <span className="text-left text-lg font-medium text-neutral-300 leading-none">
             {headText}
           </span>
-          <h3 className="text-left text-3xl font-bold">
+          <h3 className="text-left text-3xl font-bold text-neutral-100">
             {mainText}
           </h3>
           {
-            footerText && <span className="text-left text-sm text-muted-foreground flex flex-row gap-0 justify-center items-center">
+            footerText && <span className="text-left text-sm text-neutral-200 flex flex-row gap-0 justify-center items-center">
             {
-              type == "positive" && <ArrowTopRightIcon className="text-primary-300" height={16} width={16} />
+              type === CardType.INCOME && <ArrowTopRightIcon className="text-green-200" height={16} width={16} />
             }
             {
-              type == "negative" && <ArrowBottomRightIcon className="text-red-500" height={16} width={16} />
+              type === CardType.EXPENSE && <ArrowBottomRightIcon className="text-red-100" height={16} width={16} />
             }
             {footerText}
           </span>
           }
       </CardContent>
-      <CardFooter className={`bg-[#1b1609] rounded-md p-2`}>
+      <CardFooter className={`bg-neutral-900 rounded-md p-2`}>
         {
-          type == "positive" && <ArrowTopRightIcon className="text-green-500" height={48} width={48} />
+          type === CardType.INCOME && <ArrowTopRightIcon className="text-green-200" height={48} width={48} />
         }
         {
-          type == "negative" && <ArrowBottomRightIcon className="text-red-500" height={48} width={48} />
+          type === CardType.EXPENSE && <ArrowBottomRightIcon className="text-red-100" height={48} width={48} />
+        }
+        {
+          type === CardType.NEUTRAL && <DrawingPinFilledIcon className="text-blue-200" height={48} width={48} />
+        }
+        {
+          type === CardType.INFO && <InfoCircledIcon className="text-yellow-200" height={48} width={48} />
         }
       </CardFooter>
     </Card>
