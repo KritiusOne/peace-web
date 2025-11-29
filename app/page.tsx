@@ -1,6 +1,7 @@
 import { MoneyCard } from "@/components/ui/card";
 import { fixedExpensesMock } from "@/lib/mocks/moneyPageMock";
 import {mockTransactions} from "@/lib/mocks/historyMock";
+import { CardType, TransactionType } from "@/types/UtilityTypes";
 
 export default function Home() {
   return (
@@ -14,7 +15,7 @@ export default function Home() {
               headText={expense.title}
               mainText={`$${expense.amount}`}
               footerText={expense.recurrenceInterval}
-              type={expense.transactionType === "EXPENSE" ? "negative" : "positive"}
+              type={CardType.EXPENSE}
             /> // TODO: it should show only 4 items and only pendings
           ))
         }
@@ -29,7 +30,7 @@ export default function Home() {
                 headText={transaction.createdAt} // TODO: format date properly using a date library
                 mainText={`$${transaction.amount}`}
                 footerText={`${transaction.date.day}/${transaction.date.month}/${transaction.date.year}`}
-                type={transaction.transactionType === "EXPENSE" ? "negative" : "positive"}
+                type={transaction.transactionType === TransactionType.INCOME ? CardType.INCOME : CardType.EXPENSE}
               />
             ))
           }
