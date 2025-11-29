@@ -4,7 +4,29 @@ import { Privacy } from "@/types/UtilityTypes";
 import { ISave } from "@/types/Save";
 import { IDebt } from "@/types/Debt";
 import { CategoryType } from "@/types/Category";
+import { ChartConfig } from "@/components/ui/chart";
+const colors = [
+  '#4ade80',
+  '#60a5fa',
+  '#fbbf24',
+  '#f87171',
+  '#a78bfa'
+];
 
+export function getChartConfigMock(items: CashFlowItem[]): ChartConfig {
+  const config: Record<string, { label: string; color?: string }> = {};
+  items.forEach((item, index) => {
+    config[item.id] = {
+      label: item.title,
+      color: colors[index],
+    };
+  });
+  ["visitors", "desktop", "mobile"].forEach((key)=> {
+    config[key] = { label: key.charAt(0).toUpperCase() + key.slice(1) };
+  })
+
+  return config;
+}
 interface CashFlowItem {
   id: string;
   type: CardType;
@@ -34,8 +56,8 @@ export const cashFlowMock: CashFlowItem[] = [
   {
     id: "cf-004",
     type: CardType.INFO,
-    amount: 47.34, // Tasa de ahorro actualizada
-    title: "Tasa de ahorro"
+    amount: 2900, // Ahorro por mes
+    title: "Ahorro por mes"
   }
 ];
 
