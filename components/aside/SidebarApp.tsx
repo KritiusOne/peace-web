@@ -1,4 +1,5 @@
 "use client"
+import Link from "next/link"
 import { 
   Sidebar, 
   SidebarContent, 
@@ -11,14 +12,19 @@ import {
   SidebarMenuItem, 
   SidebarProvider 
 } from "../ui/sidebar"
-import { HomeIcon } from "@radix-ui/react-icons" 
+import { HomeIcon, HeartFilledIcon } from "@radix-ui/react-icons" 
 
 export const AppSidebar = () => {
   const items = [
     {
       label: "Home",
       Icon: <HomeIcon className="text-secondary-500" fill="true" />,
-      route: "#"
+      route: "/"
+    },
+    {
+      label: "Money",
+      Icon: <HeartFilledIcon className="text-secondary-500" fill="true" />,
+      route: "/money"
     }
   ]
   return (
@@ -38,10 +44,10 @@ export const AppSidebar = () => {
                         isActive={false}
                         tooltip={label}
                       >
-                        <a href={route}>
+                        <Link href={route}>
                           {Icon}
                           <span className="text-lg text-neutral-100">{label}</span>
-                        </a>
+                        </Link>
                       </SidebarMenuButton>
                     </SidebarMenuItem>
                   )
