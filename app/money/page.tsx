@@ -1,3 +1,4 @@
+import { HistoryComponent } from "@/components/history/History";
 import { BasicLivingCost, CashFlow, DebtsSection, SavingsSection } from "@/sections/Money"
 
 export default function MoneyPage() {
@@ -7,9 +8,7 @@ export default function MoneyPage() {
       <BasicLivingCost />
       <DebtsSection />
       <SavingsSection />
-      <div>
-        <h2>History</h2>
-      </div>
+      <HistoryComponent everyItem={false} numberOfItems={5} title="History" />
     </div>
   );
 }

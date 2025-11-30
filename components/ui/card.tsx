@@ -112,7 +112,7 @@ const MoneyCard: React.FC<MoneyCardProps> = ({
   };
 
   return (
-    <Card className={`border-none flex flex-row justify-around items-center px-4 ${getBackgroundColor()} w-md ${props.className}`} {...props}>
+    <Card {...props} className={`border-none flex flex-row justify-around items-center px-4 ${getBackgroundColor()} w-md ${props.className}`}>
       <CardContent className={`w-32 flex flex-col gap-2 justify-start items-start p-0`}>
           <span className="text-left text-lg font-medium text-neutral-300 leading-none">
             {headText}

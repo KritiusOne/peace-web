@@ -17,7 +17,7 @@ const colors = [
 export const CashFlow: React.FC = () => {
   return (
     <div className="w-full flex flex-col gap-4">
-      <h2 className="text-2xl font-semibold">
+      <h2 className="text-2xl font-semibold text-secondary-500">
         Cash flow
       </h2>
       <div className="w-full flex flex-row gap-4 flex-wrap justify-evenly">
@@ -37,7 +37,7 @@ export const CashFlow: React.FC = () => {
 export const BasicLivingCost: React.FC = () => {
   return (
     <div className="w-full flex flex-col">
-      <h2 className="text-2xl font-semibold">
+      <h2 className="text-2xl font-semibold text-secondary-500">
         Basic living cost
       </h2>
       <div className="flex flex-col lg:flex-row justify-between gap-4">
@@ -104,7 +104,7 @@ const debtsSummary = [
 export const DebtsSection: React.FC = () => {
   return (
     <div className="flex flex-col items-start gap-4 w-full">
-      <h2 className="text-2xl font-semibold">
+      <h2 className="text-2xl font-semibold text-secondary-500">
         Debts
       </h2>
       <div className="flex flex-col md:flex-row gap-2 justify-evenly w-full">
@@ -148,7 +148,7 @@ export const DebtsSection: React.FC = () => {
 export const SavingsSection: React.FC = () => {
   return (
     <div className="flex flex-col items-start gap-4 w-full">
-      <h2 className="text-2xl font-semibold">Savings</h2>
+      <h2 className="text-2xl font-semibold text-secondary-500">Savings</h2>
       <div className="w-full flex flex-col md:flex-row gap-8 justify-between">
         <div className="flex flex-col flex-1 gap-2">
           <h3 className="text-xl semibold flex flex-row justify-between w-full">
